@@ -15,4 +15,7 @@ function crivo(n)
             print("$p\n")
         end
     end
+    
 end
+
+crivo(50)

@@ -35,7 +35,6 @@ n = 2000000
 end
 
 # Forma 2 - Tempo 0.006749
-
 function crivo(n)
 
     primos = [true for i in 1:n] 
