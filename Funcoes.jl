@@ -82,6 +82,25 @@ args = [1, 2, pi]
 baz(args...)
 """
 
+# Declarando o tipo da vairavel na função
+
+function soma(a::Int64, b::Int64)
+    a+b
+end
+
+soma(1, 2)
+# Da erro soma(1.1, 2)
+# Para nao ter que criar uma função para cada tipo use a funçao union
+function soma(a::Union{Int64, Float64}, b::Union{Int64, Float64})
+    a+b
+end
+
+soma(1.1, 2)
+soma(1, 2.5)
+soma(1.1, 2.1)
+soma(1, 2)
+
+
 # Passando um bloco para argumentos da função
 map( x-> begin
             if x < 0 && iseven(x)
@@ -133,4 +152,6 @@ end
 x = [1, 2, 3, 4, 5]
 findall(x->x == pi, x)
 findall(x->iseven(x), x)
+
+## Sort ordena uma Coleção
 
