@@ -1,7 +1,9 @@
+using DelimitedFiles
+
 letras = ["A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"]; tamanho = length(letras)
 dict = Dict(letras[i] => i for i = 1:tamanho)
 
-using DelimitedFiles
+
 nomes = readdlm("C:\\Users\\Gabriel\\Desktop\\Julia\\Problema_22.txt",',',String) 
 nomes_ord = sort(nomes, dims = 2)
 

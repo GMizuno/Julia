@@ -88,3 +88,85 @@ struct Points2{T1, T2}
 end
 
 p1 = Points2{Int64, Float64}(1, 2, 3.1)
+
+# Exemplos de struct com function
+struct family2
+    num_members::Int
+    members::Array{String, 1}
+    function family2(num_members::Int, members::Array{String, 1}) 
+        if num_members != length(members)
+            return new(num_members, members[1:end-1])
+        else
+            return new(num_members, members)
+        end
+    end
+end 
+
+family2(3, ["Mae", "Irmao", "eu"])
+family2(4, ["Mae", "Irmao", "eu"])
+
+struct family3
+    num_members::Int
+    members::Array{String, 1}
+    function family3(num_members::Int, members::Array{String, 1}) 
+        if num_members != length(members)
+            return new(0)
+        else
+            return new(num_members, members)
+        end
+    end
+end 
+
+family3(3, ["Mae", "Irmao", "eu"])
+family3(4, ["Mae", "Irmao", "eu"])
+
+struct family4
+    num_members::Int
+    members::Array{String, 1}
+    function family4(num_members::Int, members::Array{String, 1}) 
+        if num_members != length(members)
+            return new(0)
+        else
+            return new(num_members, members)
+        end
+    end
+    function family4(num_members::Int) 
+        if num_members < 2
+            return new()
+        else
+            return new(num_members)
+        end
+    end
+end 
+
+family4(3, ["Mae", "Irmao", "eu"])
+family4(4, ["Mae", "Irmao", "eu"])
+family4(4)
+
+
+struct family5
+    num_members::Int
+    members::Array{String, 1}
+    function family5(num_members::Int, members::Array{String, 1}, tira::Bool) 
+        if tira == true
+            return new(num_members, members[2:end-1])
+        else
+            return new(num_members, members)
+        end
+    end
+end
+family5(3, ["Mae", "Irmao", "eu"], true)
+family5(4, ["Mae", "Irmao", "eu", "gato", "agregado"], false)
+
+# Exemplo usadno promote 
+struct B{T<:Real}
+    x::T
+    y::T
+    function B(X::T, Y::T) where {T<:Real}
+        W = X + pi
+        new{T}(exp(W), W)
+    end
+    B(X::Real, Y::Real) where {T<:Real} = B(promote(X, Y)[1], promote(X, Y)[2]);
+end
+
+B(1.5, 5)

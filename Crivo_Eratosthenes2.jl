@@ -9,4 +9,4 @@ function crivo(n::Int64)
     return primes
  end
 
-get_primes(50)
+crivo(1_000_000)
