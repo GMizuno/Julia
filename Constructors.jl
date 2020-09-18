@@ -1,4 +1,4 @@
-# Constructors são funções que criam novos objetos.
+# Constructors são funções que criam novos objetos usando Struct.
 # Ao contrario de linguagens como Pyhton e Java, Julia não possui classes.
 
 # Criando o Constructors
@@ -81,13 +81,27 @@ p1 = Points{Int64}(1, 2, 3)
 p2 = Points{Float64}(1.1, 2.1, 3.1)
 p3 = Points{Array{String, 1}}(["Mae", "Irmao", "eu"], ["Mae", "Irmao", "tu"], ["Mae", "Irmao"])
 
-struct Points2{T1, T2}
-    x::T1
-    y::T1
-    z::T2
+mutable struct Points2
+    x::Number
+    y::Number
+    z::Number
 end
 
-p1 = Points2{Int64, Float64}(1, 2, 3.1)
+p1 = Points2(1, 2, 3.1)
+
+# Criando uma função que soma a, b e c unidades nas coordenadas x, y e y, respectivamente.
+
+function soma(p::Points2, a::Number, b::Number, c::Number) 
+    p.x += a
+    p.y += b
+    p.z += c 
+end
+
+# Passando uma mutable struct numa funcao
+soma(p1, 1, pi, 3)
+p1
+
+# O mesmo nao pode ser feito com um immutable struct
 
 # Exemplos de struct com function
 struct family2
